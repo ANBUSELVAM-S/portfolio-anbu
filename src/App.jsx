@@ -1,8 +1,8 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css'; 
-import './App.js';
 import profilePic from './assets/anbu.jpg';
+import naathaa from './assets/me.jpeg';
 import projectpic from './assets/image1.png';
 import projectpic1 from './assets/img.jpg';
 import upcoming from './assets/image.jpeg';
@@ -18,8 +18,52 @@ function App() {
   const toggleMenu = () => {
     setMenuOpen(prev => !prev);
   };
+
+  useEffect(() => {
+  const createSpark = (x, y) => {
+    const spark = document.createElement("div");
+    spark.className = "spark";
+    spark.style.left = x + "px";
+    spark.style.top = y + "px";
+
+    document.body.appendChild(spark);
+
+    setTimeout(() => {
+      spark.remove();
+    }, 400);
+  };
+
+  const handleMouseMove = (e) => {
+    createSpark(e.clientX, e.clientY);
+  };
+
+  window.addEventListener("mousemove", handleMouseMove);
+
+  return () => {
+    window.removeEventListener("mousemove", handleMouseMove);
+  };
+}, []);
+
+useEffect(() => {
+  const container = document.querySelector(".stars-container");
+
+  for (let i = 0; i < 40; i++) {
+    const star = document.createElement("div");
+    star.className = "star";
+
+    star.style.left = Math.random() * 100 + "vw";
+    star.style.top = Math.random() * 100 + "vh";
+    star.style.animationDuration = 3 + Math.random() * 5 + "s";
+    star.style.animationDelay = Math.random() * 5 + "s";
+
+    container.appendChild(star);
+  }
+}, []);
+
+
   return (
     <>
+      <div className="stars-container"></div>
       <div className="nav" id="nav">
       {/* Hamburger icon */}
       <div className="hamburger" onClick={toggleMenu}>
@@ -50,7 +94,7 @@ function App() {
             </button>
           </div>
         </div>
-        <img src={profilePic} alt="Anbu Selvam" style={{ width: '300px', borderRadius: '10px',margin:'3rem' }} />
+        <img src={naathaa} alt="Anbu Selvam" style={{ width: '300px', borderRadius: '10px',margin:'3rem' }} />
       </div>
 
       <div className="ab" id="ab">
@@ -68,7 +112,7 @@ function App() {
           <p className="hs">
             B.E, Department of Computer Science (2023-2027)<br />
             Bannari Amman Institute of Technology, Sathyamangalam, Erode(Dt).<br/>
-            CCPA : 7.59
+            CCPA : 7.65
 
           </p>
         </div>
@@ -90,6 +134,7 @@ function App() {
           <ul>
             <li>Java</li>
             <li>C</li>
+            <li>C++ (Basic)</li>
             <li>Python</li>
           </ul>
         </div>
@@ -106,8 +151,7 @@ function App() {
         <div className="section">
           <h2>Database</h2>
           <ul>
-            <li>SQL</li>
-            <li>MongoDB</li>
+            <li>MySQL</li>
           </ul>
         </div>
       </div>
@@ -215,7 +259,7 @@ Developed a full-stack Hostel Fault Management System integrating React.js, Node
           
         </div>
       </div>
-      <h2 style={{textAlign:'center',paddingTop:'15px',color:' #40c9ff'}}>TaskManager</h2>
+      <h2 style={{textAlign:'center',paddingTop:'15px',color:' #40c9ff'}}>Online task completion tracker</h2>
       <div className="project-card">
         <div className="project-content">
           <img

@@ -8,7 +8,65 @@
       background-color: #000;
       font-family: sans-serif;
     }
+ .spark {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  background: #40c9ff;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: sparkFade 0.4s linear forwards;
+  box-shadow: 0 0 10px #40c9ff, 0 0 20px #2563eb;
+}
 
+@keyframes sparkFade {
+  0% {
+    opacity: 1;
+    transform: scale(3);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(3);
+  }
+}
+
+/* Star background container */
+.stars-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;  /* Behind everything */
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Star style */
+.star {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  background: #40c9ff;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #40c9ff, 0 0 15px #2563eb;
+  animation: floatStar linear infinite;
+}
+
+/* Floating animation */
+@keyframes floatStar {
+  0% {
+    transform: translateY(-10px);
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(700px);
+    opacity: 0.2;
+  }
+}
     .nav {
       background-color: #000000;
       padding: 1rem 2rem;
